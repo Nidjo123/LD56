@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://bekext0loqy37"]
+
+[ext_resource type="Texture2D" uid="uid://cbvtuk3adk0va" path="res://Assets/Sprites/ButtonBorder.png" id="1_hhepb"]
+[ext_resource type="PackedScene" uid="uid://bia43hkcrcne7" path="res://Scenes/Window.tscn" id="1_lou72"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0xbqa"]
+texture = ExtResource("1_hhepb")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+draw_center = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ndnh8"]
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tw1r0"]
+texture = ExtResource("1_hhepb")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0705882, 0.796078, 1, 1)
+
+[node name="Window" parent="." instance=ExtResource("1_lou72")]
+layout_mode = 1
+offset_left = 98.0
+offset_top = 88.0
+offset_right = -202.0
+offset_bottom = -180.0
+
+[node name="Window2" parent="." instance=ExtResource("1_lou72")]
+layout_mode = 1
+offset_left = 317.0
+offset_top = 157.0
+offset_right = -78.0
+offset_bottom = -38.0
+
+[node name="Window3" parent="." instance=ExtResource("1_lou72")]
+layout_mode = 1
+offset_left = 48.0
+offset_top = 252.0
+offset_right = -387.0
+offset_bottom = -105.0
+
+[node name="Taskbar" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.695503, 0.695503, 0.695503, 1)
+
+[node name="StartButton" type="Button" parent="Taskbar"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 66.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/focus = SubResource("StyleBoxTexture_0xbqa")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ndnh8")
+theme_override_styles/normal = SubResource("StyleBoxTexture_tw1r0")
+text = "Begin"

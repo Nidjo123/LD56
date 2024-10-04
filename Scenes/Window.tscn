@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://bia43hkcrcne7"]
+
+[ext_resource type="Texture2D" uid="uid://c3onqw40jf1hy" path="res://Assets/Sprites/CloseButton.png" id="1_soncd"]
+[ext_resource type="Script" path="res://Scenes/Window.gd" id="1_u3y0o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xq8k"]
+atlas = ExtResource("1_soncd")
+region = Rect2(0, 0, 16.1223, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_251ec"]
+texture = SubResource("AtlasTexture_7xq8k")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f38oe"]
+atlas = ExtResource("1_soncd")
+region = Rect2(16.0177, 0, 15.9823, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k4fnh"]
+texture = SubResource("AtlasTexture_f38oe")
+
+[node name="Window" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u3y0o")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.694118, 0.694118, 0.694118, 1)
+
+[node name="Titlebar" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 20.0
+grow_horizontal = 2
+color = Color(0.497474, 0.497474, 0.497474, 1)
+
+[node name="Title" type="RichTextLabel" parent="Titlebar"]
+layout_mode = 1
+offset_left = 4.0
+offset_top = -3.0
+offset_right = 193.0
+offset_bottom = 21.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "An empty window"
+autowrap_mode = 0
+
+[node name="CloseButton" type="Button" parent="Titlebar"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -18.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = 18.0
+grow_horizontal = 0
+theme_override_styles/hover = SubResource("StyleBoxTexture_251ec")
+theme_override_styles/normal = SubResource("StyleBoxTexture_k4fnh")
+
+[connection signal="mouse_entered" from="Titlebar" to="." method="_on_titlebar_mouse_entered"]
+[connection signal="mouse_exited" from="Titlebar" to="." method="_on_titlebar_mouse_exited"]
+[connection signal="pressed" from="Titlebar/CloseButton" to="." method="_on_close_button_pressed"]
