@@ -140,11 +140,40 @@ script = ExtResource("1_yn22s")
 position = Vector2(320, 240)
 sprite_frames = SubResource("SpriteFrames_ax4kj")
 autoplay = "default"
-frame_progress = 0.814972
+frame_progress = 0.980303
 
 [node name="BootTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 8.0
 one_shot = true
 autostart = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -210.0
+offset_top = -40.0
+offset_right = 210.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+max_value = 1.0
+value = 1.0
+show_percentage = false
 
 [connection signal="timeout" from="BootTimer" to="." method="_on_boot_timer_timeout"]

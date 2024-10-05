@@ -12,7 +12,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	pass
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		$AudioStreamPlayer.play()
 
 
 func get_random_location() -> Vector2:

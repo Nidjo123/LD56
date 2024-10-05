@@ -6,7 +6,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	pass
+	var progress = 1 - $BootTimer.time_left / $BootTimer.wait_time
+	$Control/ProgressBar.value = progress
 
 
 func _on_boot_timer_timeout() -> void:

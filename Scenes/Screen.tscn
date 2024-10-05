@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bekext0loqy37"]
+[gd_scene load_steps=21 format=3 uid="uid://bekext0loqy37"]
 
 [ext_resource type="Texture2D" uid="uid://cbvtuk3adk0va" path="res://Assets/Sprites/ButtonBorder.png" id="1_hhepb"]
 [ext_resource type="Script" path="res://Scenes/Screen.gd" id="1_mv2sq"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b7oucwvtq3thv" path="res://Scenes/Icon.tscn" id="3_xnyxj"]
 [ext_resource type="Texture2D" uid="uid://b7knma1ywn74p" path="res://Assets/Sprites/Icons/recyclebin.png" id="5_fmq8q"]
 [ext_resource type="Texture2D" uid="uid://b8y3148vhbads" path="res://Assets/Sprites/Icons/filemanager.png" id="6_r43vw"]
+[ext_resource type="AudioStream" uid="uid://etsi02p4kccg" path="res://Assets/Sounds/Click.wav" id="8_4sb2w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fpor4"]
 atlas = ExtResource("3_iep4u")
@@ -219,5 +220,8 @@ grow_vertical = 2
 max_value = 1.0
 step = 0.025
 value = 0.5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_4sb2w")
 
 [connection signal="value_changed" from="Taskbar/SoundVolume" to="." method="_on_sound_volume_value_changed"]
