@@ -1,36 +1,46 @@
-[gd_scene load_steps=6 format=3 uid="uid://bekext0loqy37"]
+[gd_scene load_steps=8 format=3 uid="uid://bekext0loqy37"]
 
 [ext_resource type="Texture2D" uid="uid://cbvtuk3adk0va" path="res://Assets/Sprites/ButtonBorder.png" id="1_hhepb"]
-[ext_resource type="PackedScene" uid="uid://bia43hkcrcne7" path="res://Scenes/Window.tscn" id="1_lou72"]
+[ext_resource type="Script" path="res://Scenes/Screen.gd" id="1_mv2sq"]
+[ext_resource type="PackedScene" uid="uid://b7oucwvtq3thv" path="res://Scenes/Icon.tscn" id="3_xnyxj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xjlg4"]
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_top = 1
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0xbqa"]
 texture = ExtResource("1_hhepb")
-texture_margin_left = 2.0
-texture_margin_top = 2.0
-texture_margin_right = 2.0
-texture_margin_bottom = 2.0
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
 draw_center = false
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ndnh8"]
-texture_margin_left = 2.0
-texture_margin_top = 2.0
-texture_margin_right = 2.0
-texture_margin_bottom = 2.0
+texture = ExtResource("1_hhepb")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+draw_center = false
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tw1r0"]
 texture = ExtResource("1_hhepb")
-texture_margin_left = 2.0
-texture_margin_top = 2.0
-texture_margin_right = 2.0
-texture_margin_bottom = 2.0
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+draw_center = false
 
-[node name="GUI" type="Control"]
+[node name="Screen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mv2sq")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -39,28 +49,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0705882, 0.796078, 1, 1)
+focus_mode = 1
+color = Color(0.270588, 0.717647, 0.541176, 1)
 
-[node name="Window" parent="." instance=ExtResource("1_lou72")]
-layout_mode = 1
-offset_left = 98.0
-offset_top = 88.0
-offset_right = -202.0
-offset_bottom = -180.0
+[node name="Icons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Window2" parent="." instance=ExtResource("1_lou72")]
+[node name="Icon" parent="Icons" instance=ExtResource("3_xnyxj")]
 layout_mode = 1
-offset_left = 317.0
-offset_top = 157.0
-offset_right = -78.0
-offset_bottom = -38.0
+offset_left = 113.0
+offset_top = 60.0
+offset_right = 113.0
+offset_bottom = 60.0
 
-[node name="Window3" parent="." instance=ExtResource("1_lou72")]
-layout_mode = 1
-offset_left = 48.0
-offset_top = 252.0
-offset_right = -387.0
-offset_bottom = -105.0
+[node name="Windows" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Taskbar" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(0, 16)
@@ -69,18 +76,28 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -25.0
+offset_top = -27.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.695503, 0.695503, 0.695503, 1)
 
+[node name="Panel" type="Panel" parent="Taskbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xjlg4")
+
 [node name="StartButton" type="Button" parent="Taskbar"]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 1.0
+offset_left = 5.0
+offset_top = 4.0
 offset_right = 66.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 10
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 11
 theme_override_styles/focus = SubResource("StyleBoxTexture_0xbqa")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ndnh8")
 theme_override_styles/normal = SubResource("StyleBoxTexture_tw1r0")

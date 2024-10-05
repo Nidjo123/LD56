@@ -1,12 +1,13 @@
 extends Control
 
+@export var title: String
+
 var drag_possible = false
 var dragging = false
 var mouse_rel_pos: Vector2 = Vector2.ZERO
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$Titlebar/Title.text = title
 
 
 func _process(delta: float) -> void:

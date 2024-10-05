@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc4lyhrjyfj0f"]
+
+[ext_resource type="Script" path="res://Level1.gd" id="1_x2bmy"]
+[ext_resource type="PackedScene" uid="uid://bekext0loqy37" path="res://Scenes/Screen.tscn" id="2_kfmng"]
+
+[node name="Level1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x2bmy")
+
+[node name="WindowSpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Screen" parent="." instance=ExtResource("2_kfmng")]
+layout_mode = 1
+
+[connection signal="timeout" from="WindowSpawnTimer" to="." method="_on_window_spawn_timer_timeout"]
