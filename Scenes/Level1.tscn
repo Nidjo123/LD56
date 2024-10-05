@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc4lyhrjyfj0f"]
+[gd_scene load_steps=8 format=3 uid="uid://cc4lyhrjyfj0f"]
 
 [ext_resource type="Script" path="res://Level1.gd" id="1_x2bmy"]
+[ext_resource type="Texture2D" uid="uid://ct68g74bdjfkd" path="res://Assets/Sprites/Popups/popup1.png" id="2_8371y"]
 [ext_resource type="PackedScene" uid="uid://bekext0loqy37" path="res://Scenes/Screen.tscn" id="2_kfmng"]
+[ext_resource type="Texture2D" uid="uid://dn8oed722eafj" path="res://Assets/Sprites/Popups/popup2.png" id="3_lwej3"]
+[ext_resource type="Texture2D" uid="uid://calhmmn54xi3l" path="res://Assets/Sprites/Popups/popup3.png" id="4_i40og"]
+[ext_resource type="Texture2D" uid="uid://hjp5wklm6ja2" path="res://Assets/Sprites/Popups/popup4.png" id="5_3rhvt"]
+[ext_resource type="Texture2D" uid="uid://vdhxhdm4p2y3" path="res://Assets/Sprites/Popups/popup5.png" id="6_rs1oh"]
 
 [node name="Level1" type="Control"]
 layout_mode = 3
@@ -11,8 +16,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x2bmy")
+popup_textures = Array[Texture2D]([ExtResource("2_8371y"), ExtResource("3_lwej3"), ExtResource("4_i40og"), ExtResource("5_3rhvt"), ExtResource("6_rs1oh")])
+popup_titles = Array[String](["Freeeeee", "Congratulations!", "Hot, hot, hot!", "Critical Warning", "Free Stuff!"])
 
 [node name="WindowSpawnTimer" type="Timer" parent="."]
+wait_time = 1.75
 autostart = true
 
 [node name="Screen" parent="." instance=ExtResource("2_kfmng")]

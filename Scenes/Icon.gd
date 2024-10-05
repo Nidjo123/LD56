@@ -1,10 +1,12 @@
 extends Control
 
-@export var normal_texture: Texture2D = null
-@export var focused_texture: Texture2D = null
+@export var text: String
+@export var normal_texture: Texture2D
+@export var focused_texture: Texture2D
 
 
 func _ready() -> void:
+	$Image/Label.text = text
 	if normal_texture:
 		$Image.texture_normal = normal_texture
 	if focused_texture:

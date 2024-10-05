@@ -1,7 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://bia43hkcrcne7"]
+[gd_scene load_steps=9 format=3 uid="uid://bia43hkcrcne7"]
 
 [ext_resource type="Texture2D" uid="uid://c3onqw40jf1hy" path="res://Assets/Sprites/CloseButton.png" id="1_soncd"]
 [ext_resource type="Script" path="res://Scenes/Window.gd" id="1_u3y0o"]
+[ext_resource type="Texture2D" uid="uid://cbvtuk3adk0va" path="res://Assets/Sprites/ButtonBorder.png" id="2_01lm6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bh65x"]
+texture = ExtResource("2_01lm6")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7xq8k"]
 atlas = ExtResource("1_soncd")
@@ -26,17 +34,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u3y0o")
 title = "test"
+content_padding = Vector2(2, 2)
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.694118, 0.694118, 0.694118, 1)
+theme_override_styles/panel = SubResource("StyleBoxTexture_bh65x")
 
-[node name="Titlebar" type="ColorRect" parent="."]
+[node name="Titlebar" type="ColorRect" parent="Panel"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 1
 anchors_preset = 10
@@ -45,7 +54,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 color = Color(0.497474, 0.497474, 0.497474, 1)
 
-[node name="Title" type="RichTextLabel" parent="Titlebar"]
+[node name="Title" type="RichTextLabel" parent="Panel/Titlebar"]
 layout_mode = 1
 offset_left = 4.0
 offset_top = -2.0
@@ -57,7 +66,7 @@ bbcode_enabled = true
 text = "An empty window"
 autowrap_mode = 0
 
-[node name="CloseButton" type="Button" parent="Titlebar"]
+[node name="CloseButton" type="Button" parent="Panel/Titlebar"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -70,6 +79,16 @@ grow_horizontal = 0
 theme_override_styles/hover = SubResource("StyleBoxTexture_251ec")
 theme_override_styles/normal = SubResource("StyleBoxTexture_k4fnh")
 
-[connection signal="mouse_entered" from="Titlebar" to="." method="_on_titlebar_mouse_entered"]
-[connection signal="mouse_exited" from="Titlebar" to="." method="_on_titlebar_mouse_exited"]
-[connection signal="pressed" from="Titlebar/CloseButton" to="." method="_on_close_button_pressed"]
+[node name="Content" type="CenterContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="mouse_entered" from="Panel/Titlebar" to="." method="_on_titlebar_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/Titlebar" to="." method="_on_titlebar_mouse_exited"]
+[connection signal="pressed" from="Panel/Titlebar/CloseButton" to="." method="_on_close_button_pressed"]

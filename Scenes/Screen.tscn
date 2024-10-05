@@ -1,8 +1,44 @@
-[gd_scene load_steps=8 format=3 uid="uid://bekext0loqy37"]
+[gd_scene load_steps=20 format=3 uid="uid://bekext0loqy37"]
 
 [ext_resource type="Texture2D" uid="uid://cbvtuk3adk0va" path="res://Assets/Sprites/ButtonBorder.png" id="1_hhepb"]
 [ext_resource type="Script" path="res://Scenes/Screen.gd" id="1_mv2sq"]
+[ext_resource type="Texture2D" uid="uid://y66mrhllk242" path="res://Assets/Sprites/Icons/cicibelaexplorer.png" id="3_g7ukn"]
+[ext_resource type="Texture2D" uid="uid://cmckietqlpvi1" path="res://Assets/Sprites/Icons/mypc.png" id="3_iep4u"]
 [ext_resource type="PackedScene" uid="uid://b7oucwvtq3thv" path="res://Scenes/Icon.tscn" id="3_xnyxj"]
+[ext_resource type="Texture2D" uid="uid://b7knma1ywn74p" path="res://Assets/Sprites/Icons/recyclebin.png" id="5_fmq8q"]
+[ext_resource type="Texture2D" uid="uid://b8y3148vhbads" path="res://Assets/Sprites/Icons/filemanager.png" id="6_r43vw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpor4"]
+atlas = ExtResource("3_iep4u")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25dlv"]
+atlas = ExtResource("3_iep4u")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uup3i"]
+atlas = ExtResource("3_g7ukn")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7b35s"]
+atlas = ExtResource("3_g7ukn")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kd5t"]
+atlas = ExtResource("5_fmq8q")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yca3r"]
+atlas = ExtResource("5_fmq8q")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bs14x"]
+atlas = ExtResource("6_r43vw")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0qv8"]
+atlas = ExtResource("6_r43vw")
+region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xjlg4"]
 bg_color = Color(1, 1, 1, 1)
@@ -54,15 +90,78 @@ color = Color(0.270588, 0.717647, 0.541176, 1)
 
 [node name="Icons" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 51.0
+offset_top = 37.0
+offset_right = 272.0
+offset_bottom = 344.0
+mouse_filter = 2
 
-[node name="Icon" parent="Icons" instance=ExtResource("3_xnyxj")]
-layout_mode = 1
-offset_left = 113.0
-offset_top = 60.0
-offset_right = 113.0
-offset_bottom = 60.0
+[node name="Computer" parent="Icons" instance=ExtResource("3_xnyxj")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+text = "Computer"
+normal_texture = SubResource("AtlasTexture_fpor4")
+focused_texture = SubResource("AtlasTexture_25dlv")
+
+[node name="Explorer" parent="Icons" instance=ExtResource("3_xnyxj")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 72.0
+offset_right = 72.0
+text = "Explorer"
+normal_texture = SubResource("AtlasTexture_uup3i")
+focused_texture = SubResource("AtlasTexture_7b35s")
+
+[node name="Rubbish" parent="Icons" instance=ExtResource("3_xnyxj")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 544.0
+offset_top = 359.0
+offset_right = 544.0
+offset_bottom = 359.0
+text = "Rubbish"
+normal_texture = SubResource("AtlasTexture_5kd5t")
+focused_texture = SubResource("AtlasTexture_yca3r")
+
+[node name="Files" parent="Icons" instance=ExtResource("3_xnyxj")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1.0
+offset_top = 74.0
+offset_right = 1.0
+offset_bottom = 74.0
+text = "Files"
+normal_texture = SubResource("AtlasTexture_bs14x")
+focused_texture = SubResource("AtlasTexture_y0qv8")
+
+[node name="AntiVirus" parent="Icons" instance=ExtResource("3_xnyxj")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 72.0
+offset_top = 75.0
+offset_right = 72.0
+offset_bottom = 75.0
+text = "AntiVirus"
 
 [node name="Windows" type="Control" parent="."]
 anchors_preset = 0
@@ -102,3 +201,23 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_0xbqa")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ndnh8")
 theme_override_styles/normal = SubResource("StyleBoxTexture_tw1r0")
 text = "Begin"
+
+[node name="SoundVolume" type="HSlider" parent="Taskbar"]
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -7.5
+offset_right = -4.0
+offset_bottom = 8.5
+grow_horizontal = 0
+grow_vertical = 2
+max_value = 1.0
+step = 0.025
+value = 0.5
+
+[connection signal="value_changed" from="Taskbar/SoundVolume" to="." method="_on_sound_volume_value_changed"]
