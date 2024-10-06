@@ -5,10 +5,13 @@ var window_scene = preload("res://Scenes/Window.tscn")
 
 @onready var master_bus_idx = AudioServer.get_bus_index("Master")
 
+signal window_closed
+signal message_accepted
+
 
 func _ready() -> void:
-	var master_volume_db = AudioServer.get_bus_volume_db(master_bus_idx)
-	$Taskbar/SoundVolume.value = db_to_linear(master_volume_db)
+	var initial_volume_db = linear_to_db($Taskbar/SoundVolume.value)
+	AudioServer.set_bus_volume_db(master_bus_idx, initial_volume_db)
 
 
 func _process(delta: float) -> void:
@@ -41,3 +44,30 @@ func get_dragging_window():
 
 func _on_sound_volume_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(master_bus_idx, linear_to_db(value))
+	
+	
+func set_virus_message(text: String):
+	$VirusMessage.set_message(text)
+	$VirusMessage.visible = true
+
+
+func _on_virus_message_message_accepted() -> void:
+	$VirusMessage.visible = false
+	message_accepted.emit()
+
+
+func _on_windows_child_exiting_tree(node: Node) -> void:
+	window_closed.emit()
+
+
+func _on_start_button_pressed() -> void:
+	$BeginPanel.visible = true
+	$BeginPanel.grab_focus()
+
+
+func _on_begin_panel_focus_exited() -> void:
+	$BeginPanel.visible = false
+
+
+func _on_shutdown_button_pressed() -> void:
+	get_tree().quit()

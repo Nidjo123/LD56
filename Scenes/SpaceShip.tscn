@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://wxrjqk7ftpll"]
+
+[ext_resource type="Script" path="res://Scenes/SpaceShip.gd" id="1_7hvxm"]
+[ext_resource type="Texture2D" uid="uid://dbgpjpjnimeb3" path="res://Assets/Sprites/Icons/Antivirus.png" id="2_knlfk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hdetx"]
+radius = 14.0
+height = 38.0
+
+[node name="SpaceShip" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_7hvxm")
+motion_speed = 100
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_knlfk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -2)
+shape = SubResource("CapsuleShape2D_hdetx")

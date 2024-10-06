@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://c13er12sxh25l"]
+
+[ext_resource type="Script" path="res://Scenes/Level2.gd" id="1_0tadd"]
+[ext_resource type="PackedScene" uid="uid://bekext0loqy37" path="res://Scenes/Screen.tscn" id="1_dtcg1"]
+[ext_resource type="PackedScene" uid="uid://wxrjqk7ftpll" path="res://Scenes/SpaceShip.tscn" id="2_d02hf"]
+[ext_resource type="PackedScene" uid="uid://bpec4seyddbe8" path="res://Scenes/Bug.tscn" id="3_pfkf2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hlsrq"]
+size = Vector2(20, 511)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0mfkg"]
+size = Vector2(667, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3kige"]
+size = Vector2(25.5, 520.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oo6pr"]
+size = Vector2(643, 20)
+
+[node name="Level2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0tadd")
+virus_message = "Oh no! It seems I have some bugs.
+
+Please don't try and shoot at them using the antivirus!
+
+DEBUG: <up>, <down>, <left>, <right>, <space>, WASD"
+
+[node name="Screen" parent="." instance=ExtResource("1_dtcg1")]
+layout_mode = 1
+
+[node name="Projectiles" type="Node2D" parent="Screen"]
+
+[node name="SpaceShip" parent="Screen" instance=ExtResource("2_d02hf")]
+position = Vector2(122, 111)
+rotation_speed = 20000
+motion_speed = 4000
+
+[node name="Bugs" type="Node2D" parent="."]
+
+[node name="Bug" parent="Bugs" instance=ExtResource("3_pfkf2")]
+position = Vector2(497, 364)
+next_point = Vector2(64, 250)
+
+[node name="WorldBounds" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(-11, 255.5)
+shape = SubResource("RectangleShape2D_hlsrq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(315.5, -8)
+shape = SubResource("RectangleShape2D_0mfkg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(652.25, 242.75)
+shape = SubResource("RectangleShape2D_3kige")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(318.5, 489)
+shape = SubResource("RectangleShape2D_oo6pr")
+
+[node name="ShootTimeout" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="message_accepted" from="Screen" to="." method="_on_screen_message_accepted"]
+[connection signal="timeout" from="ShootTimeout" to="." method="_on_shoot_timeout_timeout"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://djog0msfssugr"]
+
+[ext_resource type="Texture2D" uid="uid://dbgpjpjnimeb3" path="res://Assets/Sprites/Icons/Antivirus.png" id="1_agfyi"]
+[ext_resource type="Script" path="res://Scenes/Projectile.gd" id="1_nv51l"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5e6jw"]
+
+[node name="Projectile" type="RigidBody2D"]
+collision_layer = 6
+collision_mask = 6
+gravity_scale = 0.0
+script = ExtResource("1_nv51l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_5e6jw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_agfyi")

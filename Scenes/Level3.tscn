@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce6sg7yxc7j3w"]
+
+[ext_resource type="Script" path="res://Level3.gd" id="1_xns5r"]
+[ext_resource type="PackedScene" uid="uid://bekext0loqy37" path="res://Scenes/Screen.tscn" id="2_cn6lj"]
+
+[node name="Level3" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xns5r")
+virus_message = "Noooooo!
+
+You beat me! I give up. Even someone perfect like me has some bugs. :-(
+
+Here, have your computer back. I have even enabled the Begin menu."
+
+[node name="Screen" parent="." instance=ExtResource("2_cn6lj")]
+layout_mode = 1
+
+[connection signal="message_accepted" from="Screen" to="." method="_on_screen_message_accepted"]

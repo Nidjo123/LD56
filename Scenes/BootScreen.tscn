@@ -140,7 +140,7 @@ script = ExtResource("1_yn22s")
 position = Vector2(320, 240)
 sprite_frames = SubResource("SpriteFrames_ax4kj")
 autoplay = "default"
-frame_progress = 0.980303
+frame_progress = 0.297403
 
 [node name="BootTimer" type="Timer" parent="."]
 wait_time = 8.0

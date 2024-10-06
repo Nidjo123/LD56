@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bekext0loqy37"]
+[gd_scene load_steps=29 format=3 uid="uid://bekext0loqy37"]
 
 [ext_resource type="Texture2D" uid="uid://cbvtuk3adk0va" path="res://Assets/Sprites/ButtonBorder.png" id="1_hhepb"]
 [ext_resource type="Script" path="res://Scenes/Screen.gd" id="1_mv2sq"]
@@ -7,7 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://b7oucwvtq3thv" path="res://Scenes/Icon.tscn" id="3_xnyxj"]
 [ext_resource type="Texture2D" uid="uid://b7knma1ywn74p" path="res://Assets/Sprites/Icons/recyclebin.png" id="5_fmq8q"]
 [ext_resource type="Texture2D" uid="uid://b8y3148vhbads" path="res://Assets/Sprites/Icons/filemanager.png" id="6_r43vw"]
+[ext_resource type="FontFile" uid="uid://cub0l5xynqef0" path="res://Assets/Fonts/W95FA.otf" id="7_ngql0"]
 [ext_resource type="AudioStream" uid="uid://etsi02p4kccg" path="res://Assets/Sounds/Click.wav" id="8_4sb2w"]
+[ext_resource type="PackedScene" uid="uid://bbri40naly6vu" path="res://Scenes/VirusMessage.tscn" id="9_qwrdn"]
+[ext_resource type="Texture2D" uid="uid://dc42p75i6ichn" path="res://Assets/Sprites/ButtonBorderInverse.png" id="11_n2mpy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fpor4"]
 atlas = ExtResource("3_iep4u")
@@ -69,6 +72,41 @@ texture_margin_top = 1.0
 texture_margin_right = 1.0
 texture_margin_bottom = 1.0
 draw_center = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vhkl"]
+texture = ExtResource("11_n2mpy")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bwpol"]
+texture = ExtResource("11_n2mpy")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqdvu"]
+texture = ExtResource("1_hhepb")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kvrf7"]
+texture = ExtResource("11_n2mpy")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rckee"]
+texture = ExtResource("1_hhepb")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
 
 [node name="Screen" type="Control"]
 layout_mode = 3
@@ -192,12 +230,15 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xjlg4")
 
 [node name="StartButton" type="Button" parent="Taskbar"]
+texture_filter = 1
 layout_mode = 0
 offset_left = 5.0
 offset_top = 4.0
 offset_right = 66.0
 offset_bottom = 25.0
-theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_ngql0")
+theme_override_font_sizes/font_size = 14
 theme_override_styles/focus = SubResource("StyleBoxTexture_0xbqa")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ndnh8")
 theme_override_styles/normal = SubResource("StyleBoxTexture_tw1r0")
@@ -221,7 +262,68 @@ max_value = 1.0
 step = 0.025
 value = 0.5
 
+[node name="VirusMessage" parent="." instance=ExtResource("9_qwrdn")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_4sb2w")
 
+[node name="BeginPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -90.0
+offset_right = 145.0
+offset_bottom = -26.0
+grow_vertical = 0
+focus_mode = 1
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_7vhkl")
+
+[node name="MarginContainer" type="MarginContainer" parent="BeginPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BeginPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="AboutButton" type="Button" parent="BeginPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_ngql0")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_bwpol")
+theme_override_styles/normal = SubResource("StyleBoxTexture_iqdvu")
+text = "About"
+
+[node name="ShutdownButton" type="Button" parent="BeginPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_ngql0")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kvrf7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_rckee")
+text = "Shutdown"
+
+[connection signal="child_exiting_tree" from="Windows" to="." method="_on_windows_child_exiting_tree"]
+[connection signal="pressed" from="Taskbar/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="value_changed" from="Taskbar/SoundVolume" to="." method="_on_sound_volume_value_changed"]
+[connection signal="message_accepted" from="VirusMessage" to="." method="_on_virus_message_message_accepted"]
+[connection signal="focus_exited" from="BeginPanel" to="." method="_on_begin_panel_focus_exited"]
+[connection signal="pressed" from="BeginPanel/MarginContainer/VBoxContainer/ShutdownButton" to="." method="_on_shutdown_button_pressed"]

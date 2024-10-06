@@ -16,6 +16,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x2bmy")
+initial_message = "Hello, dear (not!) user!
+
+I am a Virus that has inhabited your computer. My purpose is to annoy you. Hope I live long and prosper! Muaahahahah."
+windows_to_close = 2
 popup_textures = Array[Texture2D]([ExtResource("2_8371y"), ExtResource("3_lwej3"), ExtResource("4_i40og"), ExtResource("5_3rhvt"), ExtResource("6_rs1oh")])
 popup_titles = Array[String](["Freeeeee", "Congratulations!", "Hot, hot, hot!", "Critical Warning", "Free Stuff!"])
 
@@ -27,3 +31,4 @@ autostart = true
 layout_mode = 1
 
 [connection signal="timeout" from="WindowSpawnTimer" to="." method="_on_window_spawn_timer_timeout"]
+[connection signal="window_closed" from="Screen" to="." method="_on_screen_window_closed"]
