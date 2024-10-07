@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bekext0loqy37"]
+[gd_scene load_steps=27 format=3 uid="uid://bekext0loqy37"]
 
 [ext_resource type="Texture2D" uid="uid://cbvtuk3adk0va" path="res://Assets/Sprites/ButtonBorder.png" id="1_hhepb"]
 [ext_resource type="Script" path="res://Scenes/Screen.gd" id="1_mv2sq"]
@@ -79,20 +79,6 @@ texture_margin_left = 4.0
 texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bwpol"]
-texture = ExtResource("11_n2mpy")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqdvu"]
-texture = ExtResource("1_hhepb")
-texture_margin_left = 2.0
-texture_margin_top = 2.0
-texture_margin_right = 2.0
-texture_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kvrf7"]
 texture = ExtResource("11_n2mpy")
@@ -276,11 +262,12 @@ stream = ExtResource("8_4sb2w")
 
 [node name="BeginPanel" type="Panel" parent="."]
 visible = false
+top_level = true
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -90.0
+offset_top = -63.0
 offset_right = 145.0
 offset_bottom = -26.0
 grow_vertical = 0
@@ -295,6 +282,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
@@ -302,15 +290,6 @@ theme_override_constants/margin_bottom = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BeginPanel/MarginContainer"]
 layout_mode = 2
-
-[node name="AboutButton" type="Button" parent="BeginPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("7_ngql0")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_bwpol")
-theme_override_styles/normal = SubResource("StyleBoxTexture_iqdvu")
-text = "About"
 
 [node name="ShutdownButton" type="Button" parent="BeginPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -325,5 +304,4 @@ text = "Shutdown"
 [connection signal="pressed" from="Taskbar/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="value_changed" from="Taskbar/SoundVolume" to="." method="_on_sound_volume_value_changed"]
 [connection signal="message_accepted" from="VirusMessage" to="." method="_on_virus_message_message_accepted"]
-[connection signal="focus_exited" from="BeginPanel" to="." method="_on_begin_panel_focus_exited"]
 [connection signal="pressed" from="BeginPanel/MarginContainer/VBoxContainer/ShutdownButton" to="." method="_on_shutdown_button_pressed"]

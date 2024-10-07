@@ -9,6 +9,9 @@ signal window_closed
 signal message_accepted
 
 
+var begin_menu_enabled = false
+
+
 func _ready() -> void:
 	var initial_volume_db = linear_to_db($Taskbar/SoundVolume.value)
 	AudioServer.set_bus_volume_db(master_bus_idx, initial_volume_db)
@@ -48,11 +51,12 @@ func _on_sound_volume_value_changed(value: float) -> void:
 	
 func set_virus_message(text: String):
 	$VirusMessage.set_message(text)
-	$VirusMessage.visible = true
+	$VirusMessage.show()
+	$VirusMessage.grab_click_focus()
 
 
 func _on_virus_message_message_accepted() -> void:
-	$VirusMessage.visible = false
+	$VirusMessage.hide()
 	message_accepted.emit()
 
 
@@ -61,13 +65,10 @@ func _on_windows_child_exiting_tree(node: Node) -> void:
 
 
 func _on_start_button_pressed() -> void:
-	$BeginPanel.visible = true
-	$BeginPanel.grab_focus()
-
-
-func _on_begin_panel_focus_exited() -> void:
-	$BeginPanel.visible = false
+	if begin_menu_enabled:
+		$BeginPanel.show()
+		$BeginPanel.grab_focus()
 
 
 func _on_shutdown_button_pressed() -> void:
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://Scenes/Ending.tscn")

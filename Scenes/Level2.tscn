@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c13er12sxh25l"]
+[gd_scene load_steps=11 format=3 uid="uid://c13er12sxh25l"]
 
 [ext_resource type="Script" path="res://Scenes/Level2.gd" id="1_0tadd"]
 [ext_resource type="PackedScene" uid="uid://bekext0loqy37" path="res://Scenes/Screen.tscn" id="1_dtcg1"]
 [ext_resource type="PackedScene" uid="uid://wxrjqk7ftpll" path="res://Scenes/SpaceShip.tscn" id="2_d02hf"]
 [ext_resource type="PackedScene" uid="uid://bpec4seyddbe8" path="res://Scenes/Bug.tscn" id="3_pfkf2"]
+[ext_resource type="AudioStream" uid="uid://b13x7grqqbbny" path="res://Assets/Sounds/Shoot.wav" id="4_8x78w"]
+[ext_resource type="AudioStream" uid="uid://bl1cjq0ywlkiq" path="res://Assets/Sounds/Hurt.wav" id="6_enksp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hlsrq"]
 size = Vector2(20, 511)
@@ -41,6 +43,10 @@ position = Vector2(122, 111)
 rotation_speed = 20000
 motion_speed = 4000
 
+[node name="ShootSoundPlayer" type="AudioStreamPlayer2D" parent="Screen/SpaceShip"]
+position = Vector2(-122, -111)
+stream = ExtResource("4_8x78w")
+
 [node name="Bugs" type="Node2D" parent="."]
 
 [node name="Bug" parent="Bugs" instance=ExtResource("3_pfkf2")]
@@ -67,6 +73,9 @@ shape = SubResource("RectangleShape2D_oo6pr")
 
 [node name="ShootTimeout" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="BugDeathSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_enksp")
 
 [connection signal="message_accepted" from="Screen" to="." method="_on_screen_message_accepted"]
 [connection signal="timeout" from="ShootTimeout" to="." method="_on_shoot_timeout_timeout"]

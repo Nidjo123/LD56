@@ -6,7 +6,6 @@ var speed: int = 500
 
 
 func _ready() -> void:
-	contact_monitor = true
 	max_contacts_reported = 16
 
 

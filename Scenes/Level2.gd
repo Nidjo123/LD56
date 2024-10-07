@@ -26,6 +26,7 @@ func _process(delta: float) -> void:
 		projectile.rotation   = spaceship.rotation
 		projectile.direction = Vector2.from_angle(spaceship.rotation + PI / 2)
 		$Screen/Projectiles.add_child(projectile)
+		$Screen/SpaceShip/ShootSoundPlayer.play()
 		can_shoot = false
 		$ShootTimeout.start()
 		
@@ -39,8 +40,13 @@ func _on_screen_message_accepted() -> void:
 		bug.position = $Screen.get_random_location()
 		bug.set_next_point($Screen.get_random_location())
 		bug.connect("arrived_at_point", _on_bug_arrived_at_point)
+		bug.connect("bug_died", _on_bug_died)
 		$Bugs.add_child(bug)
 	started = true
+
+
+func _on_bug_died():
+	$BugDeathSoundPlayer.play()
 
 
 func _on_shoot_timeout_timeout() -> void:

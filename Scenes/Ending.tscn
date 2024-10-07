@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0i5edwr5l0al"]
+
+[ext_resource type="Script" path="res://Ending.gd" id="1_3onth"]
+[ext_resource type="PackedScene" uid="uid://bbri40naly6vu" path="res://Scenes/VirusMessage.tscn" id="2_dfx66"]
+[ext_resource type="Texture2D" uid="uid://dbgpjpjnimeb3" path="res://Assets/Sprites/Icons/Antivirus.png" id="3_6kmqm"]
+[ext_resource type="Texture2D" uid="uid://chjofi5u1ngae" path="res://Assets/Sprites/Bug.png" id="4_4s66c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtnxh"]
+atlas = ExtResource("4_4s66c")
+region = Rect2(0, 0, 49, 48)
+
+[node name="Ending" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_3onth")
+end_text = "Viral Inflection is a tiny game made for Ludum Dare 56 over a weekend.
+
+The theme was Tiny Creatures.
+
+It was made by Simun182 and Nidjo123.
+
+Thanks for playing!"
+
+[node name="VirusMessage" parent="." instance=ExtResource("2_dfx66")]
+layout_mode = 1
+
+[node name="Antivirus" type="Sprite2D" parent="."]
+position = Vector2(-56, -170)
+texture = ExtResource("3_6kmqm")
+
+[node name="Bug" type="Sprite2D" parent="."]
+position = Vector2(69, -175)
+texture = SubResource("AtlasTexture_gtnxh")
+
+[connection signal="message_accepted" from="VirusMessage" to="." method="_on_virus_message_message_accepted"]

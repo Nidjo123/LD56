@@ -13,4 +13,4 @@ func _process(delta: float) -> void:
 
 
 func _on_screen_message_accepted() -> void:
-	pass
+	$Screen.begin_menu_enabled = true

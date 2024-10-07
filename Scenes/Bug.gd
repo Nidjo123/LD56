@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 signal arrived_at_point
+signal bug_died
 
 @export var speed = 100
 
@@ -10,7 +11,6 @@ signal arrived_at_point
 func _ready() -> void:
 	# to update rotation
 	set_next_point(next_point)
-	contact_monitor = true
 	max_contacts_reported = 16
 
 
@@ -35,7 +35,9 @@ func _on_death():
 
 
 func _on_body_entered(body: Node) -> void:
+	bug_died.emit()
 	$AnimatedSprite2D.play("death")
 	var death_timer = get_tree().create_timer(1)
 	death_timer.connect("timeout", _on_death)
 	body.on_collision()
+	$CollisionShape2D.disabled = true
